@@ -4,10 +4,17 @@ const ReactDOMServer = require('react-dom/server')
 
 const server = http.createServer()
 
-const text = 'hello world'
+function tokenizeText(text) {
+  return text
+    .split(/\s+/)
+    .map(token => {
+      return React.createElement('span', null, token)
+    })
+}
 
 server.on('request', (request, response) => {
-  const element = React.createElement('p', null, text)
+  const text = 'hello world'
+  const element = React.createElement('p', null, ...tokenizeText(text))
   const str = ReactDOMServer.renderToString(element)
   response.end(str)
 })
