@@ -16,7 +16,9 @@ function intersperse (text, delimiter) {
 }
 
 function requestHandler (request, response) {
-  const text = 'hello beautiful world'
+  const text = '<h1>hello</h1><p>beautiful world</p>'
+  // TODO parse html
+
   const children = intersperse(tokenizeText(text), ' ')
   const element = React.createElement('p', null, ...children)
   const str = ReactDOMServer.renderToString(element)
