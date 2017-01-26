@@ -3,10 +3,11 @@ const React = require('react')
 const ReactDOMServer = require('react-dom/server')
 
 function tokenizeText (text) {
+  const style = {backgroundColor: 'LightGrey'}
   return text
     .split(/\s+/)
     .map(token => {
-      return React.createElement('span', null, token)
+      return React.createElement('span', {style}, token)
     })
 }
 
