@@ -4,7 +4,7 @@ const ReactDOMServer = require('react-dom/server')
 
 const server = http.createServer()
 
-function tokenizeText(text) {
+function tokenizeText (text) {
   return text
     .split(/\s+/)
     .map(token => {
@@ -12,9 +12,14 @@ function tokenizeText(text) {
     })
 }
 
+function intersperse (text, delimiter) {
+  return [].concat(...text.map(t => [delimiter, t])).slice(1)
+}
+
 server.on('request', (request, response) => {
-  const text = 'hello world'
-  const element = React.createElement('p', null, ...tokenizeText(text))
+  const text = 'hello beautiful world'
+  const children = intersperse(tokenizeText(text), ' ')
+  const element = React.createElement('p', null, ...children)
   const str = ReactDOMServer.renderToString(element)
   response.end(str)
 })
