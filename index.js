@@ -1,5 +1,4 @@
 const DOMParser = require('xmldom').DOMParser
-const http = require('http')
 const React = require('react')
 const ReactDOMServer = require('react-dom/server')
 
@@ -63,6 +62,11 @@ function requestHandler (request, response) {
   response.end(str)
 }
 
-const server = http.createServer()
-server.on('request', requestHandler)
-server.listen(3000)
+function main () {
+  require('http')
+    .createServer()
+    .on('request', requestHandler)
+    .listen(3000)
+}
+
+main()
